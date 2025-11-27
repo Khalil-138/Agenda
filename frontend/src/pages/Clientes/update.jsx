@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { updatecliente } from "../../api/clientes";
+import { updateCliente } from "../../api/clientes";
 import { useLocation, useNavigate } from "react-router-dom";
 import './styles.css'
 

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CreateAtendimento } from "../../api/atendimentos";
+import { CreateAtendimento } from "../../api/atendimento";
 import { useNavigate } from "react-router-dom";
 import './styles.css'
 
@@ -11,11 +11,11 @@ const INITIAL_STATE = {
 
 export default function CreateAtendimento() {
     const navigate = useNavigate()
-    const [atendimento, setatendimento] = useState(INITIAL_STATE)
+    const [atendimento, setAtendimento] = useState(INITIAL_STATE)
 
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setatendimento({
+        setAtendimento({
             ...atendimento,
             [id]: value
         })
@@ -23,7 +23,7 @@ export default function CreateAtendimento() {
 
     const handleReset = (e) => {
         e.preventDefault()
-        setatendimento(INITIAL_STATE)
+        setAtendimento(INITIAL_STATE)
     }
 
     const handleSave = async (e) => {

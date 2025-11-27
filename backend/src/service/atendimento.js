@@ -1,4 +1,4 @@
-import atendimento from '../model/atendimentos.js'
+import atendimento from '../model/atendimento.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
@@ -26,8 +26,8 @@ class ServiceAtendimento {
         return atendimento
     }
 
-    async Create(dia, hora, valor,) {
-        if (!dia || !hora || !valor) {
+    async Create(dia, hora, valor, concluido) {
+        if (!dia || !hora || !valor || !concluido)  {
             throw new Error("favor preencher todos os campos")
         }
 
@@ -37,10 +37,11 @@ class ServiceAtendimento {
             dia,
             hora,
             valor,
+            concluido
         })
     }
 
-    async Update(id, dia, valor) {
+    async Update(id, dia, hora, valor, concluido) {
         const oldatendimento = await atendimento.findByPk(id)
         // oldatendimento.dia = dia || oldatendimento.dia
 

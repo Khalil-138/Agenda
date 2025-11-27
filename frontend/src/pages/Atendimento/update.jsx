@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
-import { updateatendimento } from "../../api/atendimentos";
+import { updateatendimento } from "../../api/atendimento";
 import { useLocation, useNavigate } from "react-router-dom";
 import './styles.css'
 
-export default function Updateatendimento() {
+export default function UpdateAtendimento() {
     const navigate = useNavigate()
-    const [atendimento, setatendimento] = useState({
-        nome: '',
-        email: '',
-        senha: '',
-        ativo: true
+    const [atendimento, setAtendimento] = useState({
+        dia: '',
+        hora: '',
+        valor: '',
+        concluido: true
     })
     // adicionar atendimentoLocation novo para pegar o state passado anteriormente
     const location = useLocation()
@@ -17,7 +17,7 @@ export default function Updateatendimento() {
 
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setatendimento({
+        setAtendimento({
             ...atendimento,
             [id]: value
         })
@@ -26,7 +26,7 @@ export default function Updateatendimento() {
     const handleReset = (e) => {
         e.preventDefault()
         // alterado do init para o prev
-        setatendimento({ ...prevatendimento, senha: '' })
+        setAtendimento({ ...prevatendimento, valor: '' })
     }
 
     const handleSave = async (e) => {
@@ -43,23 +43,23 @@ export default function Updateatendimento() {
 
     // Adicionado
     useEffect(() => {
-        setatendimento({ ...prevatendimento, senha: '' })
+        setAtendimento({ ...prevatendimento, valor: '' })
     }, [])
 
     return (
         <div className="form">
             <form>
                 <div>
-                    <label>Nome: </label>
-                    <input type="text" name="nome" id='nome' value={atendimento.nome} onChange={handleChange} />
+                    <label>dia: </label>
+                    <input type="text" name="dia" id='dia' value={atendimento.dia} onChange={handleChange} />
                 </div>
                 <div>
-                    <label>Email: </label>
-                    <input type="email" name="email" id='email' value={atendimento.email} onChange={handleChange} />
+                    <label>hora: </label>
+                    <input type="hora" name="hora" id='hora' value={atendimento.hora} onChange={handleChange} />
                 </div>
                 <div>
-                    <label>Senha: </label>
-                    <input type="password" name="senha" id='senha' value={atendimento.senha} onChange={handleChange} />
+                    <label>valor: </label>
+                    <input type="password" name="valor" id='valor' value={atendimento.valor} onChange={handleChange} />
                 </div>
                 <div className="actions">
                     <button

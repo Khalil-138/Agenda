@@ -1,32 +1,32 @@
 import { useEffect, useState } from 'react'
-import { deleteatendimento, getatendimentos } from '../../api/atendimentos'
+import { deleteAtendimento, getAtendimentos } from '../../api/atendimentos'
 import { Link, useNavigate } from 'react-router-dom'
 import './styles.css'
 import { toast } from 'react-toastify'
 
 function atendimentos() {
     const navigate = useNavigate()
-    const [atendimentos, setatendimentos] = useState([])
+    const [atendimentos, setAtendimentos] = useState([])
 
     const handleUpdate = async (atendimento) => {
         navigate('/update/atendimento', { state: { atendimento } })
     }
 
     const handleDelete = async (id) => {
-        const response = await deleteatendimento(id)
+        const response = await deleteAtendimento(id)
 
         if (response.status !== 204) {
             toast("Erro ao deletar, tente novamente, mais tarde")
             return
         }
 
-        setatendimentos(atendimentos => atendimentos.filter(atendimento => atendimento.id !== id))
+        setAtendimentos(atendimentos => atendimentos.filter(atendimento => atendimento.id !== id))
     }
 
     useEffect(() => {
         async function carregar() {
-            const allatendimentos = await getatendimentos()
-            setatendimentos(allatendimentos)
+            const allAtendimentos = await getAtendimentos()
+            setAtendimentos(allAtendimentos)
         }
         carregar()
     }, [])

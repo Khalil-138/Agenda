@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { deletecliente, getClientes } from '../../api/clientes'
+import { deleteCliente, getClientes } from '../../api/clientes'
 import { Link, useNavigate } from 'react-router-dom'
 import './styles.css'
 import { toast } from 'react-toastify'
